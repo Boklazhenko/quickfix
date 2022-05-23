@@ -1,11 +1,11 @@
 package networkcounterpartysystemstatusresponse
 
 import (
-	"github.com/Boklazhenko/enum"
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix44"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix44"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // NetworkCounterpartySystemStatusResponse is the fix44 NetworkCounterpartySystemStatusResponse type, MsgType = BD.

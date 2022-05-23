@@ -3,10 +3,10 @@ package listexecute
 import (
 	"time"
 
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix43"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix43"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // ListExecute is the fix43 ListExecute type, MsgType = L.

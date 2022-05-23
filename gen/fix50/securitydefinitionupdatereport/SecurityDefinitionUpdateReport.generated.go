@@ -3,11 +3,11 @@ package securitydefinitionupdatereport
 import (
 	"github.com/shopspring/decimal"
 
-	"github.com/Boklazhenko/enum"
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fixt11"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fixt11"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // SecurityDefinitionUpdateReport is the fix50 SecurityDefinitionUpdateReport type, MsgType = BP.

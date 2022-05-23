@@ -1,10 +1,10 @@
 package resendrequest
 
 import (
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix40"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix40"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // ResendRequest is the fix40 ResendRequest type, MsgType = 2.

@@ -3,11 +3,11 @@ package rfqrequest
 import (
 	"github.com/shopspring/decimal"
 
-	"github.com/Boklazhenko/enum"
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix43"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix43"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // RFQRequest is the fix43 RFQRequest type, MsgType = AH.

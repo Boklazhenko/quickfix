@@ -1,10 +1,10 @@
 package sequencereset
 
 import (
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix44"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix44"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // SequenceReset is the fix44 SequenceReset type, MsgType = 4.

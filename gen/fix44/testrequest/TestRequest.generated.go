@@ -1,10 +1,10 @@
 package testrequest
 
 import (
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix44"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix44"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // TestRequest is the fix44 TestRequest type, MsgType = 1.

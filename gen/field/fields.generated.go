@@ -1,9 +1,9 @@
 package field
 
 import (
-	"github.com/Boklazhenko/enum"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 	"github.com/shopspring/decimal"
 	"time"
 )

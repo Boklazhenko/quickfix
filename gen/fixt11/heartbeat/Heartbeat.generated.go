@@ -1,10 +1,10 @@
 package heartbeat
 
 import (
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fixt11"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fixt11"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // Heartbeat is the fixt11 Heartbeat type, MsgType = 0.

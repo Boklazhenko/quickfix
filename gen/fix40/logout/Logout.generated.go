@@ -1,10 +1,10 @@
 package logout
 
 import (
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix40"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix40"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // Logout is the fix40 Logout type, MsgType = 5.

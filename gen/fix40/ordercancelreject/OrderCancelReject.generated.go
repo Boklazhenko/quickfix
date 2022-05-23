@@ -1,11 +1,11 @@
 package ordercancelreject
 
 import (
-	"github.com/Boklazhenko/enum"
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix40"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix40"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // OrderCancelReject is the fix40 OrderCancelReject type, MsgType = 9.

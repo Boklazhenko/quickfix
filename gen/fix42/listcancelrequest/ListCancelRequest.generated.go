@@ -3,10 +3,10 @@ package listcancelrequest
 import (
 	"time"
 
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix42"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix42"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // ListCancelRequest is the fix42 ListCancelRequest type, MsgType = K.

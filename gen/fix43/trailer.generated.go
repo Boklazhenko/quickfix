@@ -1,9 +1,9 @@
 package fix43
 
 import (
-	"github.com/Boklazhenko/field"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // Trailer is the fix43 Trailer type.

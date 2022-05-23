@@ -1,11 +1,11 @@
 package logon
 
 import (
-	"github.com/Boklazhenko/enum"
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix41"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix41"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // Logon is the fix41 Logon type, MsgType = A.

@@ -3,11 +3,11 @@ package quoteacknowledgement
 import (
 	"github.com/shopspring/decimal"
 
-	"github.com/Boklazhenko/enum"
-	"github.com/Boklazhenko/field"
-	"github.com/Boklazhenko/fix42"
 	"github.com/Boklazhenko/quickfix"
-	"github.com/Boklazhenko/tag"
+	"github.com/Boklazhenko/quickfix/gen/enum"
+	"github.com/Boklazhenko/quickfix/gen/field"
+	"github.com/Boklazhenko/quickfix/gen/fix42"
+	"github.com/Boklazhenko/quickfix/gen/tag"
 )
 
 // QuoteAcknowledgement is the fix42 QuoteAcknowledgement type, MsgType = b.
