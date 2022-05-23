@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/Boklazhenko/quickfix/config"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 	"github.com/pkg/errors"
-	"github.com/quickfixgo/quickfix/config"
 )
 
 type mongoStoreFactory struct {

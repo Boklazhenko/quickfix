@@ -10,8 +10,8 @@ import (
 	"strconv"
 	"sync"
 
+	"github.com/Boklazhenko/quickfix/config"
 	proxyproto "github.com/armon/go-proxyproto"
-	"github.com/quickfixgo/quickfix/config"
 )
 
 //Acceptor accepts connections from FIX clients and manages the associated sessions.

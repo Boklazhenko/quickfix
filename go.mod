@@ -1,4 +1,4 @@
-module github.com/quickfixgo/quickfix
+module github.com/Boklazhenko/quickfix
 
 go 1.15
 

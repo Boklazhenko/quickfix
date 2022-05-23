@@ -1,7 +1,7 @@
 package quickfix
 
 import (
-	"github.com/quickfixgo/quickfix/datadictionary"
+	"github.com/Boklazhenko/quickfix/datadictionary"
 )
 
 //Validator validates a FIX message
