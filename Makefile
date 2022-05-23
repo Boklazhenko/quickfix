@@ -5,7 +5,7 @@ clean:
 
 generate: clean
 	mkdir -p gen; cd gen; go run ../cmd/generate-fix/generate-fix.go ../spec/*.xml
-	go get -u all 
+	#go get -u all
 
 generate-dist:
 	cd ..; go run quickfix/cmd/generate-fix/generate-fix.go quickfix/spec/*.xml
