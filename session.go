@@ -115,6 +115,7 @@ func (s *session) fillDefaultHeader(msg *Message, inReplyTo *Message) {
 
 	msg.Header.SetString(tagTargetCompID, s.sessionID.TargetCompID)
 	optionallySetID(msg, tagTargetSubID, s.sessionID.TargetSubID)
+	optionallySetID(msg, tagOnBehalfOfCompID, s.sessionID.OnBehalfOfCompID)
 	optionallySetID(msg, tagTargetLocationID, s.sessionID.TargetLocationID)
 
 	s.insertSendingTime(msg)

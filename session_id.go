@@ -4,7 +4,7 @@ import "bytes"
 
 // SessionID is a unique identifer of a Session
 type SessionID struct {
-	BeginString, TargetCompID, TargetSubID, TargetLocationID, SenderCompID, SenderSubID, SenderLocationID, Qualifier string
+	BeginString, TargetCompID, TargetSubID, OnBehalfOfCompID, TargetLocationID, SenderCompID, SenderSubID, SenderLocationID, Qualifier string
 }
 
 //IsFIXT returns true if the SessionID has a FIXT BeginString
@@ -35,6 +35,7 @@ func (s SessionID) String() string {
 
 	appendOptional(b, "/", s.TargetSubID)
 	appendOptional(b, "/", s.TargetLocationID)
+	appendOptional(b, "/", s.OnBehalfOfCompID)
 
 	appendOptional(b, ":", s.Qualifier)
 	return b.String()
