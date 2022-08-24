@@ -575,6 +575,7 @@ func (s *session) checkTargetTooHigh(msg *Message) MessageRejectError {
 func (s *session) checkCompID(msg *Message) MessageRejectError {
 	senderCompID, haveSender := msg.Header.GetBytes(tagSenderCompID)
 	targetCompID, haveTarget := msg.Header.GetBytes(tagTargetCompID)
+	onBehalfCompID, haveOnBehalfCompID := msg.Header.GetBytes(tagOnBehalfOfCompID)
 
 	switch {
 	case haveSender != nil:
@@ -585,7 +586,8 @@ func (s *session) checkCompID(msg *Message) MessageRejectError {
 		return TagSpecifiedWithoutAValue(tagTargetCompID)
 	case len(senderCompID) == 0:
 		return TagSpecifiedWithoutAValue(tagSenderCompID)
-	case s.sessionID.SenderCompID != string(targetCompID) || s.sessionID.TargetCompID != string(senderCompID):
+	case s.sessionID.SenderCompID != string(targetCompID) || s.sessionID.TargetCompID != string(senderCompID) ||
+		(haveOnBehalfCompID == nil && s.sessionID.OnBehalfOfCompID != string(onBehalfCompID)):
 		return compIDProblem()
 	}
 

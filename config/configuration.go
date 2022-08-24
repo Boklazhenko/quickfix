@@ -13,6 +13,7 @@ const (
 	TargetLocationID             string = "TargetLocationID"
 	OnBehalfOfCompID             string = "OnBehalfOfCompID"
 	SessionQualifier             string = "SessionQualifier"
+	DropCopy                     string = "DropCopy"
 	SocketAcceptHost             string = "SocketAcceptHost"
 	SocketAcceptPort             string = "SocketAcceptPort"
 	SocketConnectHost            string = "SocketConnectHost"
