@@ -283,9 +283,18 @@ func (a *Acceptor) handleConnection(netConn net.Conn) {
 		}
 	}
 
+	var onBehalfOfCompID FIXString
+	if msg.Header.Has(tagOnBehalfOfCompID) {
+		if err := msg.Header.GetField(tagOnBehalfOfCompID, &onBehalfOfCompID); err != nil {
+			a.invalidMessage(msgBytes, err)
+			return
+		}
+	}
+
 	sessID := SessionID{BeginString: string(beginString),
 		SenderCompID: string(targetCompID), SenderSubID: string(targetSubID), SenderLocationID: string(targetLocationID),
 		TargetCompID: string(senderCompID), TargetSubID: string(senderSubID), TargetLocationID: string(senderLocationID),
+		OnBehalfOfCompID: string(onBehalfOfCompID),
 	}
 
 	localConnectionPort := netConn.LocalAddr().(*net.TCPAddr).Port

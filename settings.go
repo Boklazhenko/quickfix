@@ -74,10 +74,6 @@ func sessionIDFromSessionSettings(globalSettings *SessionSettings, sessionSettin
 		if settings.HasSetting(config.SessionQualifier) {
 			sessionID.Qualifier, _ = settings.Setting(config.SessionQualifier)
 		}
-
-		if dropCopy, err := settings.BoolSetting(config.DropCopy); err != nil {
-			sessionID.DropCopy = dropCopy
-		}
 	}
 
 	return sessionID
