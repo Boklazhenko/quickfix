@@ -138,8 +138,8 @@ func (s *session) shouldSendReset() bool {
 		return false
 	}
 
-	return (s.ResetOnLogon || s.ResetOnDisconnect || s.ResetOnLogout) &&
-		s.store.NextTargetMsgSeqNum() == 1 && s.store.NextSenderMsgSeqNum() == 1
+	return s.ResetOnLogon || s.ResetOnDisconnect || s.ResetOnLogout ||
+		(s.store.NextTargetMsgSeqNum() == 1 && s.store.NextSenderMsgSeqNum() == 1)
 }
 
 func (s *session) sendLogon() error {
@@ -449,7 +449,7 @@ func (s *session) handleLogon(msg *Message) error {
 		}
 
 		s.log.OnEvent("Responding to logon request")
-		if err := s.sendLogonInReplyTo(resetSeqNumFlag.Bool(), msg); err != nil {
+		if err := s.sendLogonInReplyTo(s.shouldSendReset(), msg); err != nil {
 			return err
 		}
 	}
