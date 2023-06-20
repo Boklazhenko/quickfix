@@ -453,14 +453,18 @@ func (s *session) handleLogon(msg *Message) error {
 			return err
 		}
 	}
-	s.sentReset = false
 
 	s.peerTimer.Reset(time.Duration(float64(1.2) * float64(s.HeartBtInt)))
 	s.application.OnLogon(s.sessionID)
 
-	if err := s.checkTargetTooHigh(msg); err != nil {
-		return err
+	if !s.sentReset {
+		s.sentReset = false
+		if err := s.checkTargetTooHigh(msg); err != nil {
+			return err
+		}
 	}
+
+	s.sentReset = false
 
 	return s.store.IncrNextTargetMsgSeqNum()
 }
