@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/Boklazhenko/quickfix/datadictionary"
-	"github.com/Boklazhenko/quickfix/gen/tag"
 	"github.com/Boklazhenko/quickfix/internal"
 )
 
@@ -157,7 +156,7 @@ func (s *session) sendLogonInReplyTo(setResetSeqNum bool, inReplyTo *Message) er
 	logon.Body.SetField(tagHeartBtInt, FIXInt(s.HeartBtInt.Seconds()))
 
 	if s.SessionSettings.Password != "" {
-		logon.Body.SetField(tag.Password, FIXString(s.SessionSettings.Password))
+		logon.Body.SetField(tagPassword, FIXString(s.SessionSettings.Password))
 	}
 
 	if setResetSeqNum {
