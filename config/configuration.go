@@ -2,7 +2,7 @@ package config
 
 //NOTE: Additions to this file should be made to both config/doc.go and http://www.quickfixgo.org/docs/
 
-//Const configuration settings
+// Const configuration settings
 const (
 	BeginString                  string = "BeginString"
 	SenderCompID                 string = "SenderCompID"
@@ -66,4 +66,5 @@ const (
 	RejectInvalidMessage         string = "RejectInvalidMessage"
 	DynamicSessions              string = "DynamicSessions"
 	DynamicQualifier             string = "DynamicQualifier"
+	Password                     string = "Password"
 )

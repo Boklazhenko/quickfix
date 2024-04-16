@@ -2,7 +2,7 @@ package internal
 
 import "time"
 
-//SessionSettings stores all of the configuration for a given session
+// SessionSettings stores all of the configuration for a given session
 type SessionSettings struct {
 	ResetOnLogon                 bool
 	RefreshOnLogon               bool
@@ -26,4 +26,6 @@ type SessionSettings struct {
 	LogoutTimeout        time.Duration
 	LogonTimeout         time.Duration
 	SocketConnectAddress []string
+
+	Password string
 }

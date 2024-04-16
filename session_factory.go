@@ -45,7 +45,7 @@ type sessionFactory struct {
 	BuildInitiators bool
 }
 
-//Creates Session, associates with internal session registry
+// Creates Session, associates with internal session registry
 func (f sessionFactory) createSession(
 	sessionID SessionID, storeFactory MessageStoreFactory, settings *SessionSettings,
 	logFactory LogFactory, application Application,
@@ -127,6 +127,12 @@ func (f sessionFactory) newSession(
 
 	if settings.HasSetting(config.ResetOnLogon) {
 		if s.ResetOnLogon, err = settings.BoolSetting(config.ResetOnLogon); err != nil {
+			return
+		}
+	}
+
+	if settings.HasSetting(config.Password) {
+		if s.Password, err = settings.Setting(config.Password); err != nil {
 			return
 		}
 	}
