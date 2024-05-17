@@ -67,4 +67,5 @@ const (
 	DynamicSessions              string = "DynamicSessions"
 	DynamicQualifier             string = "DynamicQualifier"
 	Password                     string = "Password"
+	LanguageID                   string = "LanguageID"
 )

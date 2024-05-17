@@ -159,6 +159,10 @@ func (s *session) sendLogonInReplyTo(setResetSeqNum bool, inReplyTo *Message) er
 		logon.Body.SetField(tagPassword, FIXString(s.SessionSettings.Password))
 	}
 
+	if s.SessionSettings.LanguageID != "" {
+		logon.Body.SetField(tagLanguageID, FIXString(s.SessionSettings.LanguageID))
+	}
+
 	if setResetSeqNum {
 		logon.Body.SetField(tagResetSeqNumFlag, FIXBoolean(true))
 	}

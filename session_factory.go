@@ -137,6 +137,12 @@ func (f sessionFactory) newSession(
 		}
 	}
 
+	if settings.HasSetting(config.LanguageID) {
+		if s.LanguageID, err = settings.Setting(config.LanguageID); err != nil {
+			return
+		}
+	}
+
 	if settings.HasSetting(config.RefreshOnLogon) {
 		if s.RefreshOnLogon, err = settings.BoolSetting(config.RefreshOnLogon); err != nil {
 			return
