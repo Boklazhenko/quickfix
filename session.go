@@ -762,6 +762,9 @@ func (s *session) run() {
 		s.stateTimer.Stop()
 		s.peerTimer.Stop()
 		ticker.Stop()
+		if err := s.store.Close(); err != nil {
+			s.logError(err)
+		}
 	}()
 
 	for !s.Stopped() {
