@@ -3,6 +3,7 @@ package quickfix
 import (
 	"errors"
 	"fmt"
+	"golang.org/x/text/encoding"
 	"net"
 	"strconv"
 	"time"
@@ -311,6 +312,8 @@ func (f sessionFactory) newSession(
 			err = fmt.Errorf("unsupported encoding")
 			return
 		}
+	} else {
+		s.enc = encoding.Nop
 	}
 
 	if f.BuildInitiators {
