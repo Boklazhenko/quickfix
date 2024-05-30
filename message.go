@@ -151,6 +151,9 @@ func ParseMessageWithDataDictionary(
 
 	if decoder != nil {
 		rawBytes, err = decoder.Bytes(b)
+		if err != nil {
+			return
+		}
 	} else {
 		rawBytes = b
 	}
@@ -234,21 +237,21 @@ func ParseMessageWithDataDictionary(
 		msg.bodyBytes = msg.bodyBytes[:len(msg.bodyBytes)-len(trailerBytes)]
 	}
 
-	length := 0
-	for _, field := range msg.fields {
-		switch field.tag {
-		case tagBeginString, tagBodyLength, tagCheckSum: //tags do not contribute to length
-		default:
-			length += field.length()
-		}
-	}
-
-	bodyLength, err := msg.Header.GetInt(tagBodyLength)
-	if err != nil {
-		err = parseError{OrigError: err.Error()}
-	} else if length != bodyLength {
-		err = parseError{OrigError: fmt.Sprintf("Incorrect Message Length, expected %d, got %d", bodyLength, length)}
-	}
+	//length := 0
+	//for _, field := range msg.fields {
+	//	switch field.tag {
+	//	case tagBeginString, tagBodyLength, tagCheckSum: //tags do not contribute to length
+	//	default:
+	//		length += field.length()
+	//	}
+	//}
+	//
+	//bodyLength, err := msg.Header.GetInt(tagBodyLength)
+	//if err != nil {
+	//	err = parseError{OrigError: err.Error()}
+	//} else if length != bodyLength {
+	//	err = parseError{OrigError: fmt.Sprintf("Incorrect Message Length, expected %d, got %d", bodyLength, length)}
+	//}
 
 	return
 
