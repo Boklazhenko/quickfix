@@ -3,16 +3,17 @@ package quickfix
 import (
 	"bytes"
 	"fmt"
+	"golang.org/x/text/encoding"
 	"math"
 	"time"
 
 	"github.com/Boklazhenko/quickfix/datadictionary"
 )
 
-//Header is first section of a FIX Message
+// Header is first section of a FIX Message
 type Header struct{ FieldMap }
 
-//in the message header, the first 3 tags in the message header must be 8,9,35
+// in the message header, the first 3 tags in the message header must be 8,9,35
 func headerFieldOrdering(i, j Tag) bool {
 	var ordering = func(t Tag) uint32 {
 		switch t {
@@ -40,20 +41,20 @@ func headerFieldOrdering(i, j Tag) bool {
 	return i < j
 }
 
-//Init initializes the Header instance
+// Init initializes the Header instance
 func (h *Header) Init() {
 	h.initWithOrdering(headerFieldOrdering)
 }
 
-//Body is the primary application section of a FIX message
+// Body is the primary application section of a FIX message
 type Body struct{ FieldMap }
 
-//Init initializes the FIX message
+// Init initializes the FIX message
 func (b *Body) Init() {
 	b.init()
 }
 
-//Trailer is the last section of a FIX message
+// Trailer is the last section of a FIX message
 type Trailer struct{ FieldMap }
 
 // In the trailer, CheckSum (tag 10) must be last
@@ -68,12 +69,12 @@ func trailerFieldOrdering(i, j Tag) bool {
 	return i < j
 }
 
-//Init initializes the FIX message
+// Init initializes the FIX message
 func (t *Trailer) Init() {
 	t.initWithOrdering(trailerFieldOrdering)
 }
 
-//Message is a FIX Message abstraction.
+// Message is a FIX Message abstraction.
 type Message struct {
 	Header  Header
 	Trailer Trailer
@@ -91,17 +92,17 @@ type Message struct {
 	fields []TagValue
 }
 
-//ToMessage returns the message itself
+// ToMessage returns the message itself
 func (m *Message) ToMessage() *Message { return m }
 
-//parseError is returned when bytes cannot be parsed as a FIX message.
+// parseError is returned when bytes cannot be parsed as a FIX message.
 type parseError struct {
 	OrigError string
 }
 
 func (e parseError) Error() string { return fmt.Sprintf("error parsing message: %s", e.OrigError) }
 
-//NewMessage returns a newly initialized Message instance
+// NewMessage returns a newly initialized Message instance
 func NewMessage() *Message {
 	m := new(Message)
 	m.Header.Init()
@@ -127,24 +128,32 @@ func (m *Message) CopyInto(to *Message) {
 	}
 }
 
-//ParseMessage constructs a Message from a byte slice wrapping a FIX message.
+// ParseMessage constructs a Message from a byte slice wrapping a FIX message.
 func ParseMessage(msg *Message, rawMessage *bytes.Buffer) (err error) {
-	return ParseMessageWithDataDictionary(msg, rawMessage, nil, nil)
+	return ParseMessageWithDataDictionary(msg, rawMessage, nil, nil, nil)
 }
 
-//ParseMessageWithDataDictionary constructs a Message from a byte slice wrapping a FIX message using an optional session and application DataDictionary for reference.
+// ParseMessageWithDataDictionary constructs a Message from a byte slice wrapping a FIX message using an optional session and application DataDictionary for reference.
 func ParseMessageWithDataDictionary(
 	msg *Message,
 	rawMessage *bytes.Buffer,
 	transportDataDictionary *datadictionary.DataDictionary,
 	applicationDataDictionary *datadictionary.DataDictionary,
+	decoder *encoding.Decoder,
 ) (err error) {
 	msg.Header.Clear()
 	msg.Body.Clear()
 	msg.Trailer.Clear()
 	msg.rawMessage = rawMessage
 
-	rawBytes := rawMessage.Bytes()
+	b := rawMessage.Bytes()
+	var rawBytes []byte
+
+	if decoder != nil {
+		rawBytes, err = decoder.Bytes(b)
+	} else {
+		rawBytes = b
+	}
 
 	//allocate fields in one chunk
 	fieldCount := 0
@@ -284,7 +293,7 @@ func (m *Message) IsMsgTypeOf(msgType string) bool {
 	return false
 }
 
-//reverseRoute returns a message builder with routing header fields initialized as the reverse of this message.
+// reverseRoute returns a message builder with routing header fields initialized as the reverse of this message.
 func (m *Message) reverseRoute() *Message {
 	reverseMsg := NewMessage()
 
@@ -359,7 +368,7 @@ func formatCheckSum(value int) string {
 	return fmt.Sprintf("%03d", value)
 }
 
-//Build constructs a []byte from a Message instance
+// Build constructs a []byte from a Message instance
 func (m *Message) build() []byte {
 	m.cook()
 

@@ -505,7 +505,7 @@ func (s *SessionSuite) TestIncomingNotInSessionTime() {
 		msg := s.NewOrderSingle()
 		msgBytes := msg.build()
 
-		s.session.Incoming(s.session, fixIn{bytes: bytes.NewBuffer(msgBytes)})
+		s.session.Incoming(s.session, fixIn{bytes: bytes.NewBuffer(msgBytes)}, nil)
 		s.MockApp.AssertExpectations(s.T())
 		s.State(notSessionTime{})
 	}

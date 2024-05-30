@@ -2,6 +2,7 @@ package quickfix
 
 import (
 	"fmt"
+	"golang.org/x/text/encoding"
 	"time"
 
 	"github.com/Boklazhenko/quickfix/internal"
@@ -60,7 +61,7 @@ func (sm *stateMachine) Disconnected(session *session) {
 	}
 }
 
-func (sm *stateMachine) Incoming(session *session, m fixIn) {
+func (sm *stateMachine) Incoming(session *session, m fixIn, decoder *encoding.Decoder) {
 	sm.CheckSessionTime(session, time.Now())
 	if !sm.IsConnected() {
 		return
@@ -69,7 +70,7 @@ func (sm *stateMachine) Incoming(session *session, m fixIn) {
 	session.log.OnIncoming(m.bytes.Bytes())
 
 	msg := NewMessage()
-	if err := ParseMessageWithDataDictionary(msg, m.bytes, session.transportDataDictionary, session.appDataDictionary); err != nil {
+	if err := ParseMessageWithDataDictionary(msg, m.bytes, session.transportDataDictionary, session.appDataDictionary, decoder); err != nil {
 		session.log.OnEventf("Msg Parse Error: %v, %q", err.Error(), m.bytes)
 	} else {
 		msg.ReceiveTime = m.receiveTime
@@ -190,8 +191,8 @@ func handleStateError(s *session, err error) sessionState {
 	return latentState{}
 }
 
-//sessionState is the current state of the session state machine. The session state determines how the session responds to
-//incoming messages, timeouts, and requests to send application messages.
+// sessionState is the current state of the session state machine. The session state determines how the session responds to
+// incoming messages, timeouts, and requests to send application messages.
 type sessionState interface {
 	//FixMsgIn is called by the session on incoming messages from the counter party.  The return type is the next session state
 	//following message processing

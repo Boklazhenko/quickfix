@@ -214,7 +214,7 @@ func (a *Acceptor) handleConnection(netConn net.Conn) {
 	}()
 
 	reader := bufio.NewReader(netConn)
-	parser := newParser(reader, nil)
+	parser := newParser(reader)
 
 	msgBytes, err := parser.ReadMessage()
 	if err != nil {

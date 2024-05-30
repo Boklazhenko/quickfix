@@ -176,7 +176,7 @@ func (i *Initiator) handleConnection(session *session, tlsConfig *tls.Config, di
 			goto reconnect
 		}
 
-		go readLoop(newParser(bufio.NewReader(netConn), session.enc), msgIn)
+		go readLoop(newParser(bufio.NewReader(netConn)), msgIn)
 		disconnected = make(chan interface{})
 		go func() {
 			writeLoop(netConn, msgOut, session.log)

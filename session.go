@@ -784,7 +784,7 @@ func (s *session) run() {
 			if !ok {
 				s.Disconnected(s)
 			} else {
-				s.Incoming(s, fixIn)
+				s.Incoming(s, fixIn, s.enc.NewDecoder())
 			}
 
 		case evt := <-s.sessionEvent:

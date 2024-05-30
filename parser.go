@@ -5,8 +5,6 @@ import (
 	"errors"
 	"io"
 	"time"
-
-	"golang.org/x/text/encoding"
 )
 
 const (
@@ -17,17 +15,11 @@ type parser struct {
 	//buffer is a slice of bigBuffer
 	bigBuffer, buffer []byte
 	reader            io.Reader
-	decoder           *encoding.Decoder
 	lastRead          time.Time
 }
 
-func newParser(reader io.Reader, enc encoding.Encoding) *parser {
-	var decoder *encoding.Decoder
-	if enc != nil {
-		decoder = enc.NewDecoder()
-	}
-
-	return &parser{reader: reader, decoder: decoder}
+func newParser(reader io.Reader) *parser {
+	return &parser{reader: reader}
 }
 
 func (p *parser) readMore() (int, error) {
@@ -151,20 +143,7 @@ func (p *parser) ReadMessage() (msgBytes *bytes.Buffer, err error) {
 
 	msgBytes = &bytes.Buffer{}
 	msgBytes.Reset()
-
-	if p.decoder != nil {
-		defer p.decoder.Reset()
-
-		var decoded []byte
-		decoded, err = p.decoder.Bytes(p.buffer[:index])
-		if err != nil {
-			return
-		}
-
-		msgBytes.Write(decoded)
-	} else {
-		msgBytes.Write(p.buffer[:index])
-	}
+	msgBytes.Write(p.buffer[:index])
 
 	p.buffer = p.buffer[index:]
 
