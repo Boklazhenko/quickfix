@@ -68,4 +68,5 @@ const (
 	DynamicQualifier             string = "DynamicQualifier"
 	Password                     string = "Password"
 	LanguageID                   string = "LanguageID"
+	Encoding                     string = "Encoding"
 )

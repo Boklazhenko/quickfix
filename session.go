@@ -7,6 +7,8 @@ import (
 	"sync"
 	"time"
 
+	"golang.org/x/text/encoding"
+
 	"github.com/Boklazhenko/quickfix/datadictionary"
 	"github.com/Boklazhenko/quickfix/internal"
 )
@@ -44,6 +46,8 @@ type session struct {
 	appDataDictionary       *datadictionary.DataDictionary
 
 	timestampPrecision TimestampPrecision
+
+	enc encoding.Encoding
 }
 
 func (s *session) logError(err error) {

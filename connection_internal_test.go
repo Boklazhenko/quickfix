@@ -29,7 +29,7 @@ func TestReadLoop(t *testing.T) {
 	msgIn := make(chan fixIn)
 	stream := "hello8=FIX.4.09=5blah10=103garbage8=FIX.4.09=4foo10=103"
 
-	parser := newParser(strings.NewReader(stream))
+	parser := newParser(strings.NewReader(stream), nil)
 	go readLoop(parser, msgIn)
 
 	var tests = []struct {

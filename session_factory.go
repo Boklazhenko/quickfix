@@ -2,9 +2,12 @@ package quickfix
 
 import (
 	"errors"
+	"fmt"
 	"net"
 	"strconv"
 	"time"
+
+	"golang.org/x/text/encoding/charmap"
 
 	"github.com/Boklazhenko/quickfix/config"
 	"github.com/Boklazhenko/quickfix/datadictionary"
@@ -292,6 +295,22 @@ func (f sessionFactory) newSession(
 		}
 
 		s.DisableMessagePersist = !persistMessages
+	}
+
+	if settings.HasSetting(config.Encoding) {
+		var encoding string
+		encoding, err = settings.Setting(config.Encoding)
+		if err != nil {
+			return
+		}
+
+		switch encoding {
+		case "Windows1251":
+			s.enc = charmap.Windows1251
+		default:
+			err = fmt.Errorf("unsupported encoding")
+			return
+		}
 	}
 
 	if f.BuildInitiators {

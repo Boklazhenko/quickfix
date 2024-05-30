@@ -12,7 +12,7 @@ func BenchmarkParser_ReadMessage(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		reader := strings.NewReader(stream)
-		parser := newParser(reader)
+		parser := newParser(reader, nil)
 		_, _ = parser.ReadMessage()
 	}
 }
