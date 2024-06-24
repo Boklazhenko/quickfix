@@ -698,6 +698,11 @@ type fixIn struct {
 
 func (s *session) onDisconnect() {
 	s.log.OnEvent("Disconnected")
+
+	if err := s.store.Save(); err != nil {
+		s.logError(err)
+	}
+
 	if s.ResetOnDisconnect {
 		if err := s.dropAndReset(); err != nil {
 			s.logError(err)
