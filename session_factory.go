@@ -136,7 +136,8 @@ func (f sessionFactory) newSession(
 	}
 
 	if settings.HasSetting(config.Password) {
-		if s.Password, err = settings.Setting(config.Password); err != nil {
+		s.Password = new(string)
+		if *s.Password, err = settings.Setting(config.Password); err != nil {
 			return
 		}
 	}

@@ -27,6 +27,6 @@ type SessionSettings struct {
 	LogonTimeout         time.Duration
 	SocketConnectAddress []string
 
-	Password   string
+	Password   *string
 	LanguageID string
 }

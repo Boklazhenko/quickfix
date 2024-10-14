@@ -159,8 +159,8 @@ func (s *session) sendLogonInReplyTo(setResetSeqNum bool, inReplyTo *Message) er
 	logon.Body.SetField(tagEncryptMethod, FIXString("0"))
 	logon.Body.SetField(tagHeartBtInt, FIXInt(s.HeartBtInt.Seconds()))
 
-	if s.SessionSettings.Password != "" {
-		logon.Body.SetField(tagPassword, FIXString(s.SessionSettings.Password))
+	if s.SessionSettings.Password != nil {
+		logon.Body.SetField(tagPassword, FIXString(*s.SessionSettings.Password))
 	}
 
 	if s.SessionSettings.LanguageID != "" {
